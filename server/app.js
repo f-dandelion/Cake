@@ -39,8 +39,31 @@ server.use(session({
 //http://127.0.0.1:8080/01.jpg
 server.use(express.static("public"));
 
-//功能一:完成用户登录
-//启动服务器app.js/启动数据库
+//查看商品
+server.get("/product",(req,res)=>{
+   //2:接收客户请求数据 
+   //  pno 页码   pageSize 页大小
+   var pno = req.query.pno;
+   var ps  = req.query.pageSize;
+   //3:如果客户没有请示数据设置默认数据
+   //  pno=1     pageSize=4
+   if(!pno){
+     pno = 1;
+   }
+   if(!ps){
+     ps = 4;
+   }
+   //4:创建sql语句
+   var sql = "SELECT * FROM cake_details LIMIT ?,?";
+   var offset = (pno-1)*ps;//起始记录数 ?
+   ps = parseInt(ps);      //行数       ?
+   //5:发送sql语句
+   pool.query(sql,[offset,ps],(err,result)=>{
+     //6:获取返回结果发送客户端
+     if(err)throw err;
+     res.send({code:1,msg:"查询成功",data:result});
+   });
+  })
 
 
 
