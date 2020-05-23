@@ -16,7 +16,10 @@
     <span class="sendtime">
       {{sendtime}}
     </span>
+
+    
   </div>
+     
 </template>
 <script>
 export default {

@@ -6,7 +6,7 @@
       <!--:切换面板列表-->
       <mt-tab-container class="page-tabbar-container" v-model="active">
         <mt-tab-container-item id="index">
-          <index></index>
+          <index :list="list" :pno="pno" :loadMore="loadMore" :mes="mes"></index>
         </mt-tab-container-item>
 
         <mt-tab-container-item id="contact">
@@ -78,9 +78,18 @@ export default {
         {isSelect:false},
         {isSelect:false},
         {isSelect:false}
-      ]
+      ],
+
+      list:[],   //保存服务器返回商品列表
+      pno:0,     //当前页码
+      mes:"加载更多"     
     }
   },
+
+  mounted(){
+       this.loadMore();
+    },
+
   methods: {
     mysearch(){console.log("搜索");},
     myadd(){console.log("+")},
@@ -100,7 +109,29 @@ export default {
        
       }
 
-    }
+    },
+
+    loadMore(){
+           //功能一:当组件创建成功后获取第一页数据 
+           
+           //1:创建url地址
+            var url = "product";
+            //1.1:将当前页码加一
+            this.pno++;
+            var obj = {pno:this.pno}
+            //2:发送ajax请求获取第一页数据
+            this.axios.get(url,{params:obj}).then(res=>{
+            //3:将数据保存data中
+            //console.log(res.data.data);
+            //this.list = res.data.data;
+            //数组拼接操作 11:30
+            var rows = this.list.concat(res.data.data);
+            //赋值
+            this.list = rows;
+            if(res.data.data.length==2)
+              {this.mes="已经到底了"}
+            })
+        },
   },
   components:{
     "index":Index,

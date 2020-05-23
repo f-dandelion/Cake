@@ -43,6 +43,7 @@ server.use(express.static("public"));
 server.get("/product",(req,res)=>{
    //2:接收客户请求数据 
    //  pno 页码   pageSize 页大小
+   //console.log(req.query)
    var pno = req.query.pno;
    var ps  = req.query.pageSize;
    //3:如果客户没有请示数据设置默认数据

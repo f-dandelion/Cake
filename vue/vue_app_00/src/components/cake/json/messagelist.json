@@ -3,22 +3,22 @@
     {
       "id":1,
       "img":"../../assets/a_7.png",
-      "title":"微信支付",
-      "subtitle":"获取鼓励通知",
+      "title":"订单助手",
+      "subtitle":"您的订单已完成",
       "time":"16:57"
     },
     {
       "id":2,
       "img":"../../assets/a_7.png",
-      "title":"腾讯新闻",
-      "subtitle":"白天喝上十杯水才是真正的身体好",
+      "title":"通知消息",
+      "subtitle":"抹茶控京都寻味，草色茶香自悠然",
       "time":"16:36"
     },
     {
       "id":3,
       "img":"../../assets/a_7.png",
-      "title":"微信支付",
-      "subtitle":"获取鼓励通知",
+      "title":"优惠活动",
+      "subtitle":"杨枝甘露蛋糕限时99秒杀",
       "time":"16:57"
     },
     {
@@ -31,78 +31,78 @@
     {
       "id":5,
       "img":"../../assets/a_7.png",
-      "title":"微信支付",
-      "subtitle":"获取鼓励通知",
+      "title":"服务进度",
+      "subtitle":"暂无新消息",
       "time":"16:57"
     },
     {
       "id":6,
       "img":"../../assets/a_7.png",
       "title":"微信支付",
-      "subtitle":"获取鼓励通知",
+      "subtitle":"订单已完成支付",
       "time":"16:57"
     },
     {
       "id":7,
       "img":"../../assets/a_7.png",
-      "title":"微信支付",
-      "subtitle":"获取鼓励通知",
+      "title":"新语客服",
+      "subtitle":"暂无新消息",
       "time":"16:57"
     },
     {
       "id":8,
       "img":"../../assets/a_7.png",
-      "title":"微信支付",
-      "subtitle":"获取鼓励通知",
+      "title":"优惠活动",
+      "subtitle":"蓝莓拿破仑七五折优惠",
       "time":"16:57"
     },
     {
       "id":9,
       "img":"../../assets/a_7.png",
-      "title":"微信支付",
-      "subtitle":"获取鼓励通知",
+      "title":"新品出炉",
+      "subtitle":"热度持续飙升，人气咸蛋黄蛋糕",
       "time":"16:57"
     },
     {
       "id":10,
       "img":"../../assets/a_7.png",
-      "title":"微信支付",
-      "subtitle":"获取鼓励通知",
+      "title":"优惠活动",
+      "subtitle":"邀请新客户下单精美礼品相送",
       "time":"16:57"
     },
     {
       "id":11,
       "img":"../../assets/a_7.png",
-      "title":"微信支付",
-      "subtitle":"获取鼓励通知",
+      "title":"优惠活动",
+      "subtitle":"两周年店庆全场八折",
       "time":"16:57"
     },
     {
       "id":12,
       "img":"../../assets/a_7.png",
-      "title":"微信支付",
-      "subtitle":"获取鼓励通知",
+      "title":"优惠活动",
+      "subtitle":"老顾客专享买一送一",
       "time":"16:57"
     },
     {
       "id":13,
       "img":"../../assets/a_7.png",
-      "title":"微信支付",
-      "subtitle":"获取鼓励通知",
+      "title":"优惠活动",
+      "subtitle":"栗栗可薯蛋糕99只限今日！",
       "time":"16:57"
     },
     {
       "id":14,
       "img":"../../assets/a_7.png",
-      "title":"微信支付",
-      "subtitle":"获取鼓励通知",
+      "title":"优惠活动",
+      "subtitle":"买数字蛋糕送奶茶",
       "time":"16:57"
     },
     {
       "id":15,
       "img":"../../assets/a_7.png",
-      "title":"微信支付",
-      "subtitle":"获取鼓励通知",
+      "title":"优惠活动",
+      "subtitle":"巧克力松露蛋糕99限时抢",
       "time":"16:57"
     }
 

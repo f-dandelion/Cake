@@ -20,7 +20,7 @@
             </div>
             <!--添加三个面板-->
             <div class="tabList">
-                <img src="../../../img/list_show.jpg" >
+                <img src="../../../../public/img/list_show.jpg" >
                 <mt-tab-container v-model="active">
                     <mt-tab-container-item id="tab1">美食
                     </mt-tab-container-item>

@@ -2,11 +2,11 @@
    <div>
        <!--顶部导航栏-->
        <div class="page-head">
-            <img slot="icon" style="border-radius:50%" :src="require('../../../img/logo.jpg')" >
-            <span>蛋糕新语</span>
+            <img slot="icon" class="logo_img" :src="require('../../../../public/img/logo.jpg')" >
+            <span class="logo_font">蛋糕新语</span>
             <input type="search">
             <img class="search"  src="../../../assets/search.png">
-            <router-link to="/MessageList"><img class="add" src="../../../assets/message.png"></router-link>
+            <router-link to="/MessageList"><img class="message" src="../../../assets/message.png"></router-link>
         </div>
         <div style="height:35px"></div>
 
@@ -14,16 +14,16 @@
         <div class="lunbo">
         <mt-swipe :auto="5000" :show-indicators="true" >
             <mt-swipe-item>
-                <img class="lunboImg" :src="require('../../../img/banner1.jpg')">
+                <img class="lunboImg" :src="require('../../../../public/img/banner1.jpg')">
             </mt-swipe-item>
             <mt-swipe-item>
-                <img class="lunboImg" :src="require('../../../img/banner2.jpg')">
+                <img class="lunboImg" :src="require('../../../../public/img/banner2.jpg')">
             </mt-swipe-item>
             <mt-swipe-item>
-                <img class="lunboImg" :src="require('../../../img/banner3.jpg')">
+                <img class="lunboImg" :src="require('../../../../public/img/banner3.jpg')">
             </mt-swipe-item>
             <mt-swipe-item>
-                <img class="lunboImg" :src="require('../../../img/banner4.jpg')">
+                <img class="lunboImg" :src="require('../../../../public/img/banner4.jpg')">
             </mt-swipe-item>
         </mt-swipe>
         </div>
@@ -31,17 +31,36 @@
         <!--热销商品-->
         <div class="body_title">
             <img  src="../../../assets/new.png">
-            <span>新品上市</span>
+            <span >新品上市</span>
         </div>
-        
-        
+        <div style="display:flex" v-for="(item,index) of list" :key="index">
+            <img  style="width:50%;" :src="item.pic"/>
+            <div><h5>{{item.title}}</h5>
+            <h6>{{item.subtitle}}</h6>
+            <div >¥{{item.price}}</div></div>
+        </div>
+
+        <mt-button size="large" @click="loadMore">{{this.mes}}</mt-button>
    </div>
 </template>
 <script>
 export default {
-   data(){
-     return{}
-   },
+    data(){
+        return{
+        }
+    },
+    props:{
+        list:Array,
+        pno:Number,
+        loadMore:Function,
+        mes:String
+    },
+    create(){
+    },
+    methods:{
+        
+    },
+    
 }
 </script>
 <style scoped>
@@ -68,6 +87,18 @@ export default {
     border-radius:5%;
     margin-left:-25px
 }
+.logo_img{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.logo_font{
+    background:#f6f6f6;
+    width:70px;
+    height:50px;
+    line-height:50px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
 .lunbo{
     height:200px
 }
@@ -82,8 +113,9 @@ export default {
 .search{
     margin-left:-45px
 }
-.add{
-    margin-top:5px
+.message{
+    margin-top:5px;
+    margin-right:5px
 }
 .body_title{
     color:#E58336;
