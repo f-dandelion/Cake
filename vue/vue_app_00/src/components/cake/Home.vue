@@ -128,7 +128,7 @@ export default {
             var rows = this.list.concat(res.data.data);
             //赋值
             this.list = rows;
-            if(res.data.data.length==2)
+            if(res.data.data.length<4)
               {this.mes="已经到底了"}
             })
         },

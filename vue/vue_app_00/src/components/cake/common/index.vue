@@ -33,11 +33,13 @@
             <img  src="../../../assets/new.png">
             <span >新品上市</span>
         </div>
-        <div style="display:flex" v-for="(item,index) of list" :key="index">
-            <img  style="width:50%;" :src="item.pic"/>
-            <div><h5>{{item.title}}</h5>
-            <h6>{{item.subtitle}}</h6>
-            <div >¥{{item.price}}</div></div>
+        <div class="product" v-for="(item,index) of list" :key="index">
+            <img  :src="item.pic"/>
+            <div class="product_font">
+                <h5>{{item.title}}</h5>
+                <h6>{{item.subtitle}}</h6>
+                <div >¥{{item.price}}</div>
+            </div>
         </div>
 
         <mt-button size="large" @click="loadMore">{{this.mes}}</mt-button>
@@ -120,7 +122,27 @@ export default {
 .body_title{
     color:#E58336;
     height:50px;
-    border-bottom:1px solid #ff4949
 }
-
+.product{
+    display:flex;
+    border:1px solid #ccc;
+    margin-bottom:8px
+}
+.product img{
+    width:50%;
+}
+.product_font {
+    width:50%
+}
+.product_font h5,.product_font h6,.product_font div{
+    text-align: center;
+}
+.product_font h5{
+    margin-top:50px;
+    color:#ff4949;
+    font-size:16px
+}
+.product_font h6{
+    color:#7b7272
+}
 </style>

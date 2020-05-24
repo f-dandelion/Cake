@@ -39,7 +39,7 @@ server.use(session({
 //http://127.0.0.1:8080/01.jpg
 server.use(express.static("public"));
 
-//查看商品
+//首页商品
 server.get("/product",(req,res)=>{
    //2:接收客户请求数据 
    //  pno 页码   pageSize 页大小
@@ -61,10 +61,26 @@ server.get("/product",(req,res)=>{
    //5:发送sql语句
    pool.query(sql,[offset,ps],(err,result)=>{
      //6:获取返回结果发送客户端
-     if(err)throw err;
+     if(err) throw err;
      res.send({code:1,msg:"查询成功",data:result});
    });
   })
 
+//所有分类商品
+server.get("/listPro",(req,res)=>{
+  var sql = "SELECT * FROM cake_details";
+  pool.query(sql,(err,result)=>{
+    if(err) throw err;
+    res.send({code:2,msg:"查询成功",data:result})
+  })
+})
 
-
+//查看商品详情
+server.get("/proDetail",(req,res)=>{
+    var lid=req.query.lid;
+    var sql=`select * from cake_details where lid=?`;
+    pool.query(sql,[lid],(err,result)=>{
+      if(err) throw err;
+      res.send({code:3,msg:"查询成功",data:result})
+    })
+})
