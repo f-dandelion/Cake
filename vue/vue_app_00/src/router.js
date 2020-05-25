@@ -5,13 +5,19 @@ import Home from "./components/cake/Home.vue"
 //消息组件
 import MessageList from "./components/cake/common/MessageList.vue"
 import Details from './components/cake/common/details.vue'
+import Cart from "./components/cake/common/cart.vue"
+import Mine from "./components/cake/common/mine.vue"
+import Login from "./components/cake/common/login.vue"
 
 
 Vue.use(Router)
 export default new Router({
   routes: [
-   {path:'/',component:Home},
-   {path:'/MessageList',component:MessageList},
-   {path:'/details/:lid',component:Details,props:true},
+    {path:'/',component:Home},
+    {path:'/MessageList',component:MessageList},
+    {path:'/details/:lid',component:Details,props:true},
+    {path:'/cart',component:Cart},
+    {path:'/mine',component:Mine},
+    {path:'/login',component:Login},
   ]
 })

@@ -83,16 +83,16 @@ export default {
 .detail_font{
     font-size: 20px;
     color:#ff4949;
-    margin-top:16px;
-    margin-bottom:16px;
+    margin-top:13px;
+    margin-bottom:13px;
 }
 .detail_subtitle{
     font-size:18px;
-    margin-bottom:16px;
+    margin-bottom:13px;
 }
 .sweet_img{
     display: flex;
-    margin-bottom:15px;
+    margin-bottom:11px;
     font-size:18px
 }
 .cart{
@@ -106,6 +106,8 @@ export default {
 }
 .detail_bottom{
     display: flex;
+    margin-left:10px;
+    margin-right:10px;
 }
 .cart_font{
     width:70%;

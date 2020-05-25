@@ -33,13 +33,15 @@
             <img  src="../../../assets/new.png">
             <span >新品上市</span>
         </div>
-        <div class="product" v-for="(item,index) of list" :key="index">
+        <div  v-for="(item,index) of list" :key="index">
+            <router-link :to="`/details/${item.lid}`"  class="product">
             <img  :src="item.pic"/>
             <div class="product_font">
                 <h5>{{item.title}}</h5>
                 <h6>{{item.subtitle}}</h6>
                 <div >¥{{item.price}}</div>
             </div>
+            </router-link>
         </div>
 
         <mt-button size="large" @click="loadMore">{{this.mes}}</mt-button>
@@ -138,11 +140,18 @@ export default {
     text-align: center;
 }
 .product_font h5{
-    margin-top:50px;
+    margin-top:35px;
     color:#ff4949;
     font-size:16px
 }
 .product_font h6{
-    color:#7b7272
+    color:#7b7272;
+    font-size:15px;
+}
+a{
+    text-decoration: none;
+}
+.router-link-active{
+    text-decoration: none;
 }
 </style>

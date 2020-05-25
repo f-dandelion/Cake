@@ -13,12 +13,10 @@
            <list></list>
         </mt-tab-container-item>
         <mt-tab-container-item id="find">
-         <messagelist>
-         </messagelist>
+           <cart></cart>
         </mt-tab-container-item>
         <mt-tab-container-item id="me">
-         <messagelist>
-         </messagelist>
+           <mine></mine>
         </mt-tab-container-item>
       </mt-tab-container>
       <!--4:tabbar列表-->
@@ -67,6 +65,8 @@ import Index from "./common/index.vue"
 import MessageList from "./common/MessageList.vue"
 import TabBarIcon from "./common/TabBarIcon.vue"
 import List from "./common/List.vue"
+import cart from "./common/cart.vue"
+import mine from "./common/mine.vue"
 export default {
   data(){
     return {
@@ -137,7 +137,9 @@ export default {
     "index":Index,
     "messagelist":MessageList,
     "tabbaricon":TabBarIcon,
-    "list":List
+    "list":List,
+    "cart":cart,
+    "mine":mine
   }
 }
 </script>
