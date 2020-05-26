@@ -7,7 +7,7 @@
             我的订单
         </div>
         <div class="mine_login">
-            <div class="mine_left">注册</div>
+            <router-link to="/register"  class="mine_right">注册</router-link>
             <router-link to="/login"  class="mine_right">登录</router-link>
         </div>
     </div>
@@ -56,7 +56,7 @@ export default {
     margin-bottom:5px;
     color:#353131;
 }
-.mine_left,.mine_right{
+.mine_right{
     width:30%;
     height:30px;
     line-height:30px;

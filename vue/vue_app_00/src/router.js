@@ -8,6 +8,7 @@ import Details from './components/cake/common/details.vue'
 import Cart from "./components/cake/common/cart.vue"
 import Mine from "./components/cake/common/mine.vue"
 import Login from "./components/cake/common/login.vue"
+import Register from "./components/cake/common/register.vue"
 
 
 Vue.use(Router)
@@ -19,5 +20,6 @@ export default new Router({
     {path:'/cart',component:Cart},
     {path:'/mine',component:Mine},
     {path:'/login',component:Login},
+    {path:'/register',component:Register},
   ]
 })

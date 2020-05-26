@@ -1,11 +1,17 @@
 <template>
     <div>
-        <mt-field label="用户名" placeholder="请输入用户名" v-model="uname"></mt-field>
-        <!--用户密码输入框-->
-       <mt-field label="密码" placeholder="请输入密码" v-model="upwd"></mt-field>
-       <!--登录按钮 绑定事件-->
-       <mt-button size="large" @click="login">登录</mt-button>
-    </div>
+        <div class="xq">
+            <span class="xq_back" @click="prev">返回</span>
+        </div>
+        <img class="login_img" src="../../../../public/img/bg.jpg">
+        <div>
+            <mt-field class="input_border" label="用户名"  placeholder="请输入用户名" v-model="uname"></mt-field>
+            <!--用户密码输入框-->
+            <mt-field class="input_border" label="密码" placeholder="请输入密码" v-model="upwd"></mt-field>
+            <!--登录按钮 绑定事件-->
+            <mt-button size="large" @click="login">登录</mt-button>
+        </div>
+       </div>
 </template>
 <script>
 export default {
@@ -47,7 +53,40 @@ export default {
                 this.$router.push("/")
             }
             })
-        }
+        },
+        prev(){
+            this.$router.go(-1)
+        },
     }
 }
 </script>
+<style scoped>
+.login_img{
+    width:100%;
+    height:100%
+}
+.xq{
+    width:100%;
+    height:45px;
+    line-height:45px;
+    text-align: center;
+    position:fixed;
+    z-index:999;
+    display: flex;
+}
+.xq_back{
+    margin-left:10px;
+    color:#292929;
+    border-radius:10px;
+    width:40px;
+    height:30px;
+    line-height:30px;
+    margin-top:10px;
+    background:#ff4949;
+    opacity: .7;
+}
+.input_border{
+    border-bottom:1px solid #ccc
+}
+</style>
+

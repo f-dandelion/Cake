@@ -148,6 +148,9 @@ export default {
     color:#7b7272;
     font-size:15px;
 }
+.product_font div{
+    color:#292727;
+}
 a{
     text-decoration: none;
 }

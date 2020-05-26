@@ -6,6 +6,8 @@ const express= require("express");
 const session = require("express-session");
 const cors = require("cors");
 const mysql = require("mysql");
+//const qs=require("querystring");
+const bodyParser = require('body-parser');
 //3:创建数据库连接池
 var pool = mysql.createPool({
    host:"127.0.0.1",
@@ -19,6 +21,7 @@ var pool = mysql.createPool({
 //4:创建web服务器监听 8080 端口
 var server = express();
 server.listen(8080);
+server.use(bodyParser.urlencoded({extended:false}));
 //5:处理跨域 cors 
 //5.1：配置允许访问程序地址(脚手架)
 //     http://127.0.0.1:5050  (ok)
@@ -115,3 +118,19 @@ server.get("/login",(req,res)=>{
   });
 })
 
+
+
+//注册功能
+server.post('/register',(req,res)=>{
+  console.log(req.body);
+
+  var u=req.body.uname;
+  var p=req.body.upwd;
+  var phone=req.body.phone;
+  var sql=`INSERT INTO  cake_user(uname,upwd,phone) values('${u}',md5('${p}'),'${phone}')`;
+  pool.query(sql,(err,result)=>{
+    if(err) throw err;
+    //console.log(result.affectedRows);
+	  res.send({code:200,msg:"注册成功"});
+  })
+})
