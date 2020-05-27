@@ -134,3 +134,57 @@ server.post('/register',(req,res)=>{
 	  res.send({code:200,msg:"注册成功"});
   })
 })
+
+
+//加入购物车
+server.get('/addcart',(req,res)=>{
+  var uid = req.session.uid;
+   if(!uid){
+    res.send({code:-1,msg:"请先登录"});
+    return;
+   }
+  //console.log(req.query)
+    var lid = req.query.lid;
+    var price = req.query.price;
+    var title = req.query.title;
+    var count=req.query.count;
+    var pic=req.query.pic;
+    var sql = "SELECT id FROM cake_cart";
+    sql+=" WHERE uid = ? AND lid = ?";
+    pool.query(sql,[uid,lid],(err,result)=>{
+      if(err)throw err;
+      //在回调函数中判断下一步操作
+      //  没购买过此商品  添加
+      //  己购买过此商品  更新
+      if(result.length==0){
+       var sql = `INSERT INTO cake_cart VALUES(null,${lid},${price},${count},'${title}',${uid},'${pic}')`;
+      }else{
+       var sql = `UPDATE cake_cart SET count=count+1 WHERE uid=${uid} AND lid=${lid}`;
+      }
+      //执行sql获取返回结果
+      pool.query(sql,(err,result)=>{
+        if(err)throw err;
+        //如果sql UPDATE INSERT DELETE
+        //判断执行成功 result.affectedRows 影响行数
+        if(result.affectedRows>0){
+          //console.log(result)
+         res.send({code:1,msg:"商品添加成功"});
+        }else{
+         res.send({code:-2,msg:"添加失败"}); 
+        }
+      })
+    })
+})
+
+
+//查看购物车
+server.get("/carts",(req,res)=>{
+  var uid = req.session.uid;
+
+  var sql = "SELECT * FROM ";
+  sql+=" cake_cart WHERE uid = ?";
+  pool.query(sql,[uid],(err,result)=>{
+    if(err)throw err;
+    res.send({code:1,msg:"查询成功",data:result})
+  })
+})

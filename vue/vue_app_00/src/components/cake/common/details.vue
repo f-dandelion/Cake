@@ -16,7 +16,7 @@
                 <img class="sweet" src="../../../../public/img/sweet.png"></div>
             </div>           
             <div class="detail_subtitle">价格：¥{{cakeDetail.price}}</div>
-            <div class="detail_bottom">
+            <div class="detail_bottom" @click="addcart" >
                 <div class="cart">
                     <img class="detail_cart" src="../../../assets/cart_selected.png">
                 </div>
@@ -29,7 +29,8 @@
 export default {
     data(){
         return{
-            cakeDetail:""
+            cakeDetail:"",
+            count:1
         }
     },
     props:["lid"],
@@ -52,6 +53,31 @@ export default {
                 this.cakeDetail=res.data.data[0];
             })
         },
+
+        addcart(event){
+            //var lid = event.target.dataset.lid;
+            //var title=event.target.dataset.title;
+            //var price=event.target.dataset.price;        
+            //var pic=event.target.dataset.pic;
+            var lid=this.cakeDetail.lid;
+            var title=this.cakeDetail.title;
+            var price=this.cakeDetail.price;
+            var pic=this.cakeDetail.pic;
+            var url = "addcart";
+            var obj = {lid:lid,title:title,price:price,pic:pic,count:this.count};
+            this.axios.get(url,{params:obj}).then(res=>{
+                if(res.data.code == -1){
+                   this.$messagebox.confirm("请登录").then(()=>{this.$router.push("/login")})
+                }else if(res.data.code == 1){
+                    this.$toast("添加成功");
+                    this.$router.push({path:"/cart"})
+                }else{
+                    this.$toast("添加失败")
+                }
+            })
+
+        
+        }
     },
 
 }

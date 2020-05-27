@@ -46,7 +46,8 @@ CREATE TABLE cake_cart(
   price  DECIMAL(10,2),
   count  INT,
   title  VARCHAR(255),
-  uid    INT
+  uid    INT,
+  pic   VARCHAR(128)
 );
 
 /*用户信息*/
