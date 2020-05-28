@@ -11,43 +11,15 @@
         </div>
 
         <div>
-            <!--<table style="word-wrap:break-word;word-break:break-all">
-               <thead> <tr>
-                    <td>
-                        <label>
-                            <input    type="checkbox" >
-                            全选
-                        </label>
-                    </td>
-                    <td >款式</td>
-                    <td  >单价</td>
-                    <td   >数量</td>
-                    <td >金额</td>
-                    <td >删除</td>
-                </tr></thead>
-                <tbody><tr v-for="(item,i) of list" :key="i">
-                    <td>
-                        <input type="checkbox">选择
-                    </td>
-                    <td>
-                        <img :src="item.pic" style="width:50px;">
-                        {{item.title}}
-                    </td>
-                    <td>¥{{item.price}}</td>
-                    <td>{{item.count}}</td>
-                    <td>¥{{(item.price*item.count).toFixed(2)}}</td>
-                    <td>删除</td>
-                </tr></tbody>
-            </table>-->
-            <div v-show="!cart_blank">
+            <div  v-show="!cart_blank" class="selAll">
                 <label>
-                    <input   type="checkbox" >
-                        全选
+                    <input type="checkbox"    @click="selectProduct(isSelectAll)" :checked="isSelectAll">
+                        <span>全选</span>
                 </label>
             </div>
             <div v-for="(item,i) of list" :key="i" class="cart">              
                 <div class="cart_list" >
-                    <input type="checkbox">
+                    <input type="checkbox"  v-model="item.cb">
                     <img style="width:50px;" :src="item.pic">
                     <span>{{item.title}}</span>
                     <div class="count">
@@ -56,12 +28,12 @@
                         <div  @click="item.count++">+</div>
                     </div>
                     <span>¥{{(item.price*item.count).toFixed(2)}}</span>
-                    <span>✘</span>
+                    <span   :data-id="item.id"   @click="deletePro($event)">✘</span>
                 </div>
                 
             </div>
             <div   v-show="!cart_blank" class="cart_bottom"> 
-                <div>总金额</div>
+                <div>总金额&nbsp;&nbsp;&nbsp;¥{{getTotal.totalPrice}}</div>
                 <div class="total">结算</div>
             </div>
         </div>
@@ -97,8 +69,54 @@ export default {
             })
         },
 
-        //数量加减
-        
+        //选择所有
+        selectProduct(_isSelect){
+            //遍历list，全部取反
+            for (var i = 0; i < this.list.length; i++) {
+                this.list[i].cb = !_isSelect;
+            }
+        },
+
+        //删除
+        deletePro(event){
+            //this.list.splice(index,1);
+            this.$messagebox.confirm("是否删除指定数据").then(res=>{
+       //(3)将当前商品id传递函数
+       var id = event.target.dataset.id;
+       //(4)发送ajax请示完成删除任务
+       var url="delItem";
+       var obj={id:id};
+       this.axios.get(url,{
+         params:obj
+       }).then(res=>{
+         if(res.data.code==1){
+          this.$toast("删除成功");
+          this.loadCart();//刷新
+         }else{
+          this.$toast("删除失败"); 
+         }
+       }) 
+       //(5)删除成功 提示"删除成功"
+      }).catch(err=>{
+      })
+        },
+    },
+    computed:{
+        //检测单个是否都选中
+        isSelectAll:function(){
+            //如果list中每一条数据的cb都为true，返回true，否则返回false;
+            return this.list.every(function (val) { return val.cb});
+        },
+
+        //合计
+        getTotal(){
+			var prolist = this.list.filter(function (val) { return val.cb}),
+			totalPri = 0;
+			for (var i = 0; i < prolist.length; i++) {
+				totalPri+=prolist[i].price*prolist[i].count;
+			}
+			return {totalPrice:totalPri}
+		},
     }
 }
 </script>
@@ -123,6 +141,15 @@ export default {
     margin-left:-15%;
     margin-top:10%;
     color:#7b7272
+}
+.selAll{
+    margin-bottom:5px;
+}
+.selAll input{
+    margin-top:20px;
+}
+.selAll span{
+    font-size: 18px;
 }
 .count{
     width:25%;
@@ -169,16 +196,21 @@ export default {
     height:100px;
     margin:0 auto;
     text-align: center;
-    margin-top:20px;
+    margin-top:50px;
+}
+.cart_bottom div:first-child{
+    font-size:20px;
 }
 .total{
     width:80%;
-    height:35px;
-    line-height:35px;
+    height:40px;
+    line-height:40px;
     background:#ff4949;
     opacity: .8;
     border-radius:30px;
     margin:0 auto;
     margin-top:20px;
+    font-size:20px;
 }
+
 </style>

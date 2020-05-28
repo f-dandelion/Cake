@@ -188,3 +188,53 @@ server.get("/carts",(req,res)=>{
     res.send({code:1,msg:"查询成功",data:result})
   })
 })
+
+
+//删除购物车中的商品
+server.get("/delItem",(req,res)=>{
+  //1：获取客户端发送数据id
+    var id = req.query.id;
+    //2: 创建sql语句
+    var sql = "DELETE FROM cake_cart WHERE id=?";
+    //3: 执行sql语句
+    pool.query(sql,[id],(err,result)=>{
+       if(err)throw err;
+       //4: 获取服务器获取结果判断删除是否成功
+       if(result.affectedRows>0){
+         res.send({code:1,msg:"删除成功"});
+       }else{
+         res.send({code:-1,msg:"删除失败"});
+       }
+    })
+})
+
+
+//查询用户信息
+server.get("/userInfo",(req,res)=>{
+  var uid = req.session.uid;
+
+  var sql = "SELECT * FROM cake_user WHERE uid = ?";
+  pool.query(sql,[uid],(err,result)=>{
+    if(err)throw err;
+    res.send(result)
+  })
+})
+
+
+//按关键词搜索
+server.get("/search",(req,res)=>{
+  var kw=req.query.kw;
+
+  if(kw){
+    var kws=kw.split(" ");
+    kws.forEach((elem,i,arr)=>{
+        arr[i]=`title like '%${elem}%'`;
+    })
+    var where=kws.join(" and ");
+    var sql=`select * from cake_details where ${where}`;
+    pool.query(sql,[],(err,result)=>{
+      if(err)throw err;
+      res.send(result)
+    })
+  }
+})

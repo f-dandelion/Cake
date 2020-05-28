@@ -57,7 +57,7 @@ CREATE TABLE cake_user(
   upwd VARCHAR(32),
   phone VARCHAR(16),
   avatar VARCHAR(128),        #头像图片路径
-  user_name VARCHAR(32)      #用户名，如王小明
+  user_name VARCHAR(32)      #用户名
 );
 INSERT INTO cake_user VALUES
-(NULL,'tom',md5('123456'),'13111111111','','汤姆');
+(NULL,'tom',md5('123456'),'13111111111','img/tom.png','汤姆');

@@ -9,6 +9,7 @@ import Cart from "./components/cake/common/cart.vue"
 import Mine from "./components/cake/common/mine.vue"
 import Login from "./components/cake/common/login.vue"
 import Register from "./components/cake/common/register.vue"
+import Search from "./components/cake/common/search.vue"
 
 
 Vue.use(Router)
@@ -21,5 +22,6 @@ export default new Router({
     {path:'/mine',component:Mine},
     {path:'/login',component:Login},
     {path:'/register',component:Register},
+    {path:'/search/:kw',component:Search,props:true},
   ]
 })

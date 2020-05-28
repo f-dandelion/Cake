@@ -1,10 +1,19 @@
 <template>
     <div>
         <div class="mine_title">
-            <img src="../../../assets/me.png">
+            <img v-show='photo' src="../../../assets/me.png">
+            <img v-show='!photo' :src="usercenter.avatar">
         </div>
         <div class="mine_order">
             我的订单
+        </div>
+        <div @click="showNext" v-show='!photo' class="mine_order">
+            我的信息
+        </div>
+        <div v-show='info' class="info">
+            <div>昵称：{{usercenter.uname}}</div>
+            <div>真实姓名：{{usercenter.user_name}}</div>
+            <div>绑定的手机号：{{usercenter.phone}}</div>
         </div>
         <div class="mine_login">
             <router-link to="/register"  class="mine_right">注册</router-link>
@@ -15,8 +24,28 @@
 <script>
 export default {
     data(){
-        return{}
+        return{
+            usercenter:{},
+            photo:true,
+            info:false
+        }
     },
+    created(){
+        this.user()
+    },
+    methods:{
+        user(){
+            this.axios.get("userInfo").then(res=>{
+                if(res.data.length!==0){
+                 this.usercenter=res.data[0];
+                 this.photo=false}
+                 //console.log(this.usercenter)
+            })
+        },
+        showNext(){
+            this.info=!this.info
+        }
+    }
 }
 </script>
 <style scoped>
@@ -70,5 +99,12 @@ a{
 }
 .router-link-active{
     text-decoration: none;
+}
+.info{
+    color:#6d5959;
+    font-size:18px
+}
+.info div:first-child,.info div:nth-child(2){
+    margin-bottom:10px;
 }
 </style>

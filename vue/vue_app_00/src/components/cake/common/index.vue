@@ -4,8 +4,8 @@
        <div class="page-head">
             <img slot="icon" class="logo_img" :src="require('../../../../public/img/logo.jpg')" >
             <span class="logo_font">蛋糕新语</span>
-            <input type="search">
-            <img class="search"  src="../../../assets/search.png">
+            <input type="text"  v-model="kw">
+            <img class="search"   @click="search" src="../../../assets/search.png">
             <router-link to="/MessageList"><img class="message" src="../../../assets/message.png"></router-link>
         </div>
         <div style="height:35px"></div>
@@ -51,6 +51,7 @@
 export default {
     data(){
         return{
+            kw:"",
         }
     },
     props:{
@@ -62,7 +63,9 @@ export default {
     create(){
     },
     methods:{
-        
+        search(){
+            this.$router.push("/search/"+this.kw)
+        },
     },
     
 }
