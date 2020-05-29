@@ -180,7 +180,10 @@ server.get('/addcart',(req,res)=>{
 //查看购物车
 server.get("/carts",(req,res)=>{
   var uid = req.session.uid;
-
+  if(!uid){
+    res.send({code:-1,msg:"请先登录"})
+    return
+  }
   var sql = "SELECT * FROM ";
   sql+=" cake_cart WHERE uid = ?";
   pool.query(sql,[uid],(err,result)=>{
@@ -212,7 +215,10 @@ server.get("/delItem",(req,res)=>{
 //查询用户信息
 server.get("/userInfo",(req,res)=>{
   var uid = req.session.uid;
-
+  if(!uid){
+    res.send({code:-1,msg:"请先登录"})
+    return
+  }
   var sql = "SELECT * FROM cake_user WHERE uid = ?";
   pool.query(sql,[uid],(err,result)=>{
     if(err)throw err;
@@ -237,4 +243,15 @@ server.get("/search",(req,res)=>{
       res.send(result)
     })
   }
+})
+
+
+//退出登录
+server.get("/logOut",(req,res)=>{
+  //req.session.destroy();
+  delete req.session.uid;
+  //console.log(req.session.uid)
+  //return res.render('/login');
+  //req.session.setAttribute("uid",null)
+  res.send({code:3,msg:"退出成功"})
 })

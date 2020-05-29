@@ -1,23 +1,26 @@
 <template>
     <div>
         <div class="mine_title">
-            <img v-show='photo' src="../../../assets/me.png">
-            <img v-show='!photo' :src="usercenter.avatar">
+            <img v-if='!usercenter' src="../../../assets/me.png"><!--v-show='photo'-->
+            <img v-if='usercenter' :src="usercenter.avatar">
         </div>
         <div class="mine_order">
-            我的订单
+            <router-link to="/">我的订单</router-link>
         </div>
-        <div @click="showNext" v-show='!photo' class="mine_order">
+        <div @click="showNext" v-if='usercenter' class="mine_order">
             我的信息
         </div>
-        <div v-show='info' class="info">
+        <div  v-if='usercenter' v-show="info" class="info">
             <div>昵称：{{usercenter.uname}}</div>
             <div>真实姓名：{{usercenter.user_name}}</div>
             <div>绑定的手机号：{{usercenter.phone}}</div>
         </div>
-        <div class="mine_login">
+        <div class="mine_login" v-if='!usercenter'>
             <router-link to="/register"  class="mine_right">注册</router-link>
             <router-link to="/login"  class="mine_right">登录</router-link>
+        </div>
+        <div v-if='usercenter' class="mine_order" @click="logout">
+            退出登录
         </div>
     </div>
 </template>
@@ -25,7 +28,7 @@
 export default {
     data(){
         return{
-            usercenter:{},
+            usercenter:'',//usercenter:{},
             photo:true,
             info:false
         }
@@ -37,13 +40,23 @@ export default {
         user(){
             this.axios.get("userInfo").then(res=>{
                 if(res.data.length!==0){
-                 this.usercenter=res.data[0];
-                 this.photo=false}
+                    this.usercenter=res.data[0];
+                    this.photo=false
+                }
                  //console.log(this.usercenter)
             })
         },
         showNext(){
             this.info=!this.info
+        },
+        logout(){
+            this.axios.get("logOut").then(res=>{
+                if(res.data.code==3){
+                    this.$toast('退出成功')
+                    this.$router.push("/login")
+                }
+               
+            })
         }
     }
 }
