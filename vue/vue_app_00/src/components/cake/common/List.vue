@@ -9,7 +9,7 @@
             <div  class="column">
                 <div @click="active='tab1'">雪域口味</div>
                 <div  @click="active='tab2'">芝士口味</div>
-                <div  @click="active='tab3'">巧克力味</div>
+                <div  @click="active='tab3'" >巧克力味</div>
                 <div  @click="active='tab4'">慕斯口味</div>
                 <div @click="active='tab5'">鲜果口味</div>
                 <div @click="active='tab6'">奶油口味</div>
@@ -224,6 +224,17 @@ export default {
                 this.all=res.data.data;
             })
         },
+    },
+    watch:{
+        active:function(){
+            var a=document.querySelector('.column div:first-child');
+            if(this.active!=='tab1'){               
+                a.style.background='#FFFFFF'
+                //console.log(this.active)
+            }else{
+                a.style.background='rgb(226, 172, 73)'
+            }
+        }
     }
 }
 </script>
@@ -281,5 +292,10 @@ a{
 }
 .router-link-active{
     text-decoration: none;
+}
+
+
+.column div:first-child{
+    background:rgb(226, 172, 73)
 }
 </style>

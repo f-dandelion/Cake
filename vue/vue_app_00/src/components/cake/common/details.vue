@@ -23,6 +23,8 @@
                 <div class="cart_font">加入购物车</div>
             </div>
         </div>
+
+        
     </div>
 </template>
 <script>

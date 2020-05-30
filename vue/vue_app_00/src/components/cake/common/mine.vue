@@ -5,7 +5,7 @@
             <img v-if='usercenter' :src="usercenter.avatar">
         </div>
         <div class="mine_order">
-            <router-link to="/">我的订单</router-link>
+            <router-link to="/order" style="color:#353131">我的订单</router-link>
         </div>
         <div @click="showNext" v-if='usercenter' class="mine_order">
             我的信息

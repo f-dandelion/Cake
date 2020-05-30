@@ -4,7 +4,7 @@
        <div class="page-head">
             <img slot="icon" class="logo_img" :src="require('../../../../public/img/logo.jpg')" >
             <span class="logo_font">蛋糕新语</span>
-            <input type="text"  v-model="kw">
+            <input  type="text"  v-model="kw">
             <img class="search"   @click="search" src="../../../assets/search.png">
             <router-link to="/MessageList"><img class="message" src="../../../assets/message.png"></router-link>
         </div>
@@ -91,7 +91,7 @@ export default {
     outline: none; 
     width:35%;
     border:1px solid #ccc;
-    border-radius:5%;
+    border-radius:10px;
     margin-left:-25px
 }
 .logo_img{
