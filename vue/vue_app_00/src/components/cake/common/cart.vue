@@ -64,8 +64,9 @@ export default {
                         //console.log(this.list)
                         if(!this.list.length==0){
                             this.cart_blank=false;
-                        }
-                }
+                            
+                        }                        
+                }     
             })
         },
 
@@ -117,7 +118,8 @@ export default {
 			}
 			return {totalPrice:totalPri}
 		},
-    }
+    },
+    
 }
 </script>
 <style scoped>

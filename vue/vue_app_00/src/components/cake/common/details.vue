@@ -57,10 +57,6 @@ export default {
         },
 
         addcart(event){
-            //var lid = event.target.dataset.lid;
-            //var title=event.target.dataset.title;
-            //var price=event.target.dataset.price;        
-            //var pic=event.target.dataset.pic;
             var lid=this.cakeDetail.lid;
             var title=this.cakeDetail.title;
             var price=this.cakeDetail.price;
@@ -72,7 +68,7 @@ export default {
                    this.$messagebox.confirm("请登录").then(()=>{this.$router.push("/login")})
                 }else if(res.data.code == 1){
                     this.$toast("添加成功");
-                    this.$router.push({path:"/cart"})
+                    //this.$router.push("/cart")
                 }else{
                     this.$toast("添加失败")
                 }

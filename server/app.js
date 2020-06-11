@@ -122,7 +122,7 @@ server.get("/login",(req,res)=>{
 
 //注册功能
 server.post('/register',(req,res)=>{
-  console.log(req.body);
+  //console.log(req.body);
 
   var u=req.body.uname;
   var p=req.body.upwd;
@@ -130,7 +130,14 @@ server.post('/register',(req,res)=>{
   var sql=`INSERT INTO  cake_user(uname,upwd,phone) values('${u}',md5('${p}'),'${phone}')`;
   pool.query(sql,(err,result)=>{
     if(err) throw err;
-    //console.log(result.affectedRows);
+    var sql1=`SELECT uid FROM cake_user WHERE uname = ? AND upwd = md5(?)`
+    pool.query(sql1,[u,p],(err,result)=>{
+      if(err)throw err;
+      //console.log(result);
+      var uid = result[0].uid;
+      req.session.uid = uid;
+    })
+    //console.log(result);
 	  res.send({code:200,msg:"注册成功"});
   })
 })

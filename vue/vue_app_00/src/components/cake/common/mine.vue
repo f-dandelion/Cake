@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="mine_title">
-            <img v-if='!usercenter' src="../../../assets/me.png"><!--v-show='photo'-->
-            <img v-if='usercenter' :src="usercenter.avatar">
+            <img v-if="!usercenter" src="../../../assets/me.png" >
+            <img  :src="usercenter.avatar" v-if="usercenter">
         </div>
         <div class="mine_order">
             <router-link to="/order" style="color:#353131">我的订单</router-link>
@@ -30,7 +30,7 @@ export default {
         return{
             usercenter:'',//usercenter:{},
             photo:true,
-            info:false
+            info:false,
         }
     },
     created(){
@@ -41,8 +41,8 @@ export default {
             this.axios.get("userInfo").then(res=>{
                 if(res.data.length!==0){
                     this.usercenter=res.data[0];
-                    this.photo=false
                 }
+                
                  //console.log(this.usercenter)
             })
         },

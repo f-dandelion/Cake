@@ -1,6 +1,5 @@
 <template>
   <div class="rootstyle" @click="itemClick(id)">
-    <!--h3>Message.vue 消息组件</h3-->
     <div class="leftimgandlablestyle">
       <img 
       :src="imgurl" alt="" class="imgstyle">

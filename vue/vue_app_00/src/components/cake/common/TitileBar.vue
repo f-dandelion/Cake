@@ -16,11 +16,11 @@
 export default {
   name:"TitileBar",
   props:{
-    //右侧第一,二张图片
+
     leftImg:{default:""},
     rightFirstImg:{default:""},
     rightSecondImg:{default:""},
-    //两个函数
+
     search:{type:Function},
     add:{type:Function}
   },
