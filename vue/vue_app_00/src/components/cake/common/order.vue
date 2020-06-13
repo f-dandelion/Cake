@@ -51,9 +51,9 @@ export default {
         deletePro(event){
             //this.list.splice(index,1);
             this.$messagebox.confirm("是否删除指定数据").then(res=>{
-       //(3)将当前商品id传递函数
+       //将当前商品id传递函数
        var id = event.target.dataset.id;
-       //(4)发送ajax请示完成删除任务
+       //发送ajax请示完成删除任务
        var url="delItem";
        var obj={id:id};
        this.axios.get(url,{
@@ -66,7 +66,6 @@ export default {
           this.$toast("删除失败"); 
          }
        }) 
-       //(5)删除成功 提示"删除成功"
       }).catch(err=>{
       })
         }

@@ -31,7 +31,6 @@ export default {
 }
 </script>
 <style scoped>
-   /*最外层父元素*/
    .page-head{
      display: flex;
      position: fixed;

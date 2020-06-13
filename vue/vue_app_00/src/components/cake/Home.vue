@@ -70,7 +70,6 @@ import mine from "./common/mine.vue"
 export default {
   data(){
     return {
-      //面板中显示子组件id
       active:"index",
       //创建数组保存图片焦点状态
       currentIndex:[
@@ -94,16 +93,11 @@ export default {
     mysearch(){console.log("搜索");},
     myadd(){console.log("+")},
     changeState(n){
-      //函数功能:将当前参数下标
       //对应数组值修改true其它修改false
-      //1:创建循环,循环数组中内容
       for(var i=0;i<this.currentIndex.length;i++){
-       //2:判断如果循环下标与n相等 20
        if(n==i){
-        //3:当前下标元素true 10:22
         this.currentIndex[i].isSelect=true;
        }else{
-        //4:其它元素修改false
         this.currentIndex[i].isSelect=false;
        }
        
@@ -112,21 +106,17 @@ export default {
     },
 
     loadMore(){
-           //功能一:当组件创建成功后获取第一页数据 
-           
-           //1:创建url地址
+           //当组件创建成功后获取第一页数据 
             var url = "product";
-            //1.1:将当前页码加一
+            //将当前页码加一
             this.pno++;
             var obj = {pno:this.pno}
-            //2:发送ajax请求获取第一页数据
+            //发送ajax请求获取第一页数据
             this.axios.get(url,{params:obj}).then(res=>{
-            //3:将数据保存data中
+            //将数据保存data中
             //console.log(res.data.data);
             //this.list = res.data.data;
-            //数组拼接操作 11:30
             var rows = this.list.concat(res.data.data);
-            //赋值
             this.list = rows;
             if(res.data.data.length<4)
               {this.mes="已经到底了"}
@@ -144,22 +134,19 @@ export default {
 }
 </script>
 <style  scoped>
-/*最外层父元素Home.vue*/
 .page-tabbar{
-  overflow: hidden;/*溢出隐藏*/
+  overflow: hidden;
 }
-/*修改 tabbar 默认文字颜色*/
 .mint-tabbar>.mint-tab-item{
   color:#999999;
 }
-/*修改默认tab选中文字样式*/
 .mint-tabbar>.mint-tab-item.is-selected{
   background-color: transparent;
   color:#E58336;
 }
 
 .page-wrap{
-  overflow:auto;/*溢出显示轮动条*/
+  overflow:auto;
   padding-bottom: 60px;
 }
 .titlebar{

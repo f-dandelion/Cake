@@ -35,12 +35,6 @@ export default {
     }
   },
   created(){
-    //console.log(123);
-    //for(var item of this.datas){
-    //   item.cb  = reqiure(item.img);
-   //    console.log(cb);
-   //    console.log(item.img);
-   // }
   },
   methods: {
     clickitem(id){

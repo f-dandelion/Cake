@@ -16,7 +16,7 @@ axios.defaults.baseURL="http://127.0.0.1:8080/"
 
 //http://127.0.0.1:8080/!!!!
 //如果地址  http://localhost 报错
-//1.8:注册
+
 Vue.prototype.axios = axios;
 
 
@@ -36,7 +36,7 @@ var store = new Vuex.Store({
   }
 })
 
-//1.12:将存储对象添加vue实例作为属性
+
 new Vue({
   router,
   render: h => h(App),

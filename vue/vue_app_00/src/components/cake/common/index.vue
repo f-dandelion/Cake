@@ -72,11 +72,11 @@ export default {
 </script>
 <style scoped>
 .page-head{
-    position: fixed;/*固定定位*/
-    z-index: 999;/*浮动所有元素上方*/
+    position: fixed;
+    z-index: 999;
     width:100%;
-    justify-content: space-between;/*两端对齐*/
-    align-items: center;/*垂直居中*/
+    justify-content: space-between;
+    align-items: center;
     background:#fff;
     display: flex;
     height:35px;
