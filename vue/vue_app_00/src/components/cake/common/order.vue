@@ -49,26 +49,23 @@ export default {
 
         //删除
         deletePro(event){
-            //this.list.splice(index,1);
             this.$messagebox.confirm("是否删除指定数据").then(res=>{
-       //将当前商品id传递函数
-       var id = event.target.dataset.id;
-       //发送ajax请示完成删除任务
-       var url="delItem";
-       var obj={id:id};
-       this.axios.get(url,{
-         params:obj
-       }).then(res=>{
-         if(res.data.code==1){
-          this.$toast("删除成功");
-          this.loadCart();//刷新
-         }else{
-          this.$toast("删除失败"); 
-         }
-       }) 
-      }).catch(err=>{
-      })
-        }
+            var id = event.target.dataset.id;
+            var url="delItem";
+            var obj={id:id};
+            this.axios.get(url,{
+              params:obj
+            }).then(res=>{
+              if(res.data.code==1){
+              this.$toast("删除成功");
+              this.loadCart();
+              }else{
+                this.$toast("删除失败"); 
+              }
+            }) 
+          }).catch(err=>{
+        })
+      }
     }    
 }
 </script>

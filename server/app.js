@@ -37,13 +37,8 @@ server.use(express.static("public"));
 
 //首页商品
 server.get("/product",(req,res)=>{
-   //接收客户请求数据 
-   //  pno 页码   pageSize 页大小
-   //console.log(req.query)
    var pno = req.query.pno;
    var ps  = req.query.pageSize;
-   //如果客户没有请示数据设置默认数据
-   //  pno=1     pageSize=4
    if(!pno){
      pno = 1;
    }
@@ -52,8 +47,8 @@ server.get("/product",(req,res)=>{
    }
 
    var sql = "SELECT * FROM cake_details LIMIT ?,?";
-   var offset = (pno-1)*ps;//起始记录数 ?
-   ps = parseInt(ps);      //行数       ?
+   var offset = (pno-1)*ps;
+   ps = parseInt(ps);     
 
    pool.query(sql,[offset,ps],(err,result)=>{
     

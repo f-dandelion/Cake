@@ -23,10 +23,8 @@ export default {
     },
     methods:{
         login(){
-           //获取用户名和密码 
             var u = this.uname;
             var p = this.upwd;
-            //创建正则表达式  3~12位
             var reg = /^[0-9]{3,12}$/i;
 
             if(reg.test(u)){

@@ -68,7 +68,6 @@ export default {
                    this.$messagebox.confirm("请登录").then(()=>{this.$router.push("/login")})
                 }else if(res.data.code == 1){
                     this.$toast("添加成功");
-                    //this.$router.push("/cart")
                 }else{
                     this.$toast("添加失败")
                 }

@@ -19,7 +19,6 @@
            <mine></mine>
         </mt-tab-container-item>
       </mt-tab-container>
-      <!--4:tabbar列表-->
       <!--为每个按钮绑定点击事件-->
       <!--当前按钮isSelect:true-->
       <!--其它按钮isSelect:false-->
@@ -71,7 +70,7 @@ export default {
   data(){
     return {
       active:"index",
-      //创建数组保存图片焦点状态
+      //图片焦点状态
       currentIndex:[
         {isSelect:true},
         {isSelect:false},
@@ -79,15 +78,15 @@ export default {
         {isSelect:false}
       ],
 
-      list:[],   //保存服务器返回商品列表
-      pno:0,     //当前页码
+      list:[],   
+      pno:0,  
       mes:"加载更多"     
     }
   },
 
   mounted(){
        this.loadMore();
-    },
+  },
 
   methods: {
     mysearch(){console.log("搜索");},
@@ -106,22 +105,20 @@ export default {
     },
 
     loadMore(){
-           //当组件创建成功后获取第一页数据 
-            var url = "product";
-            //将当前页码加一
-            this.pno++;
-            var obj = {pno:this.pno}
-            //发送ajax请求获取第一页数据
-            this.axios.get(url,{params:obj}).then(res=>{
-            //将数据保存data中
-            //console.log(res.data.data);
-            //this.list = res.data.data;
-            var rows = this.list.concat(res.data.data);
-            this.list = rows;
-            if(res.data.data.length<4)
-              {this.mes="已经到底了"}
-            })
-        },
+       //当组件创建成功后获取第一页数据 
+        var url = "product";
+        this.pno++;
+        var obj = {pno:this.pno}
+        this.axios.get(url,{params:obj}).then(res=>{
+          //console.log(res.data.data);
+          //this.list = res.data.data;
+          var rows = this.list.concat(res.data.data);
+          this.list = rows;
+          if(res.data.data.length<4){
+            this.mes="已经到底了"
+          }
+        })
+      },
   },
   components:{
     "index":Index,

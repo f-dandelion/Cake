@@ -28,7 +28,7 @@
 export default {
     data(){
         return{
-            usercenter:'',//usercenter:{},
+            usercenter:'',
             photo:true,
             info:false,
         }

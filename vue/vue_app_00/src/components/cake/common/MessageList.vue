@@ -24,9 +24,7 @@
   </div>
 </template>
 <script>
-//负责引入Message子组件
 import  Message from "./Message"
-//负责引入json文件
 import messagejson from "../json/messagelist.json"
 export default {
   data(){

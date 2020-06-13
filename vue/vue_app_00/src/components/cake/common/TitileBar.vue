@@ -16,11 +16,9 @@
 export default {
   name:"TitileBar",
   props:{
-
     leftImg:{default:""},
     rightFirstImg:{default:""},
     rightSecondImg:{default:""},
-
     search:{type:Function},
     add:{type:Function}
   },
