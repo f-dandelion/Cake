@@ -1,5 +1,3 @@
-# xz_admin_v2
-
 ## Project setup
 ```
 npm install
